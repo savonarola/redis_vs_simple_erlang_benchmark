@@ -1,7 +1,7 @@
 # RedisEtsBenchmark
 
 Very primitive comparison of `Redis` vs `GenServer` + `ets` + distributed Erlang
-as a "distributed in-memory storage".
+as a "net shared in-memory storage".
 
 ## Running
 
