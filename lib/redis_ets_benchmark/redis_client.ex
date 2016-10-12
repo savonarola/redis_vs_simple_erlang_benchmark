@@ -2,8 +2,6 @@ defmodule RedisEtsBenchmark.RedisClient do
 
   def create do
     conf = Application.fetch_env!(:redis_ets_benchmark, :redis)
-    IO.inspect conf
-    IO.inspect([conf[:host], conf[:port], conf[:db]])
     {:ok, pid} = :eredis.start_link(conf[:host], conf[:port], conf[:db])
     pid
   end
