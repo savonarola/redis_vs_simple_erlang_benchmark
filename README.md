@@ -28,20 +28,21 @@ Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz
 
 
 ```
-Benchmark suite executing with the following configuration:
-warmup: 2.0s
-time: 15.0s
-parallel: 3
-Estimated total run time: 34.0s
+time: 30.0s
+parallel: 1
+Estimated total run time: 96.0s
 
+Benchmarking eredis...
+Benchmarking eredis_sync...
 Benchmarking kv...
-Benchmarking redis...
 
-Name            ips        average    deviation         median
-redis       6753.09      148.08 μs    (±32.94%)      149.00 μs
-kv          6567.10      152.27 μs    (±34.44%)      143.00 μs
+Name                  ips        average    deviation         median
+eredis_sync      17538.06       57.02 μs    (±58.04%)       50.00 μs
+eredis           15472.90       64.63 μs    (±39.44%)       57.00 μs
+kv               11730.16       85.25 μs    (±42.88%)       70.00 μs
 
 Comparison:
-redis       6753.09
-kv          6567.10 - 1.03x slower
+eredis_sync      17538.06
+eredis           15472.90 - 1.13x slower
+kv               11730.16 - 1.50x slower
 ```
