@@ -4,7 +4,7 @@ defmodule RedisEtsBenchmark do
   @run_time 60_000
   @key "sample_key"
 
-  @parallel [5, 10, 15, 20, 25, 30, 45, 40, 45, 50, 55, 60]
+  @parallel [5, 10, 15, 20, 25, 30, 40, 50, 60]
 
   @modules [
     RedisEtsBenchmark.RedisClient,
