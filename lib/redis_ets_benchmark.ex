@@ -25,7 +25,7 @@ defmodule RedisEtsBenchmark do
   defp benchmark(client_module) do
     init_fn = fn -> client_module.create end
     fun = fn(client) ->
-      key = @sample_key
+      key = @key
       client_module.set(client, key, key)
     end
     RedisEtsBenchmark.Benchmark.run(init_fn, fun, @run_time, @parallel)
