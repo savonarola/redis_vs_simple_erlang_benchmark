@@ -25,13 +25,13 @@ defmodule RedisEtsBenchmark.Benchmark do
     {cnt, mean, stdev}
   end
 
-  def do_benchmark(init_fn, fun, time) do
+  defp do_benchmark(init_fn, fun, time) do
     st = init_fn.()
     fun_with_st = fn -> fun.(st) end
     do_benchmark_iter(fun_with_st, :erlang.monotonic_time(:milli_seconds) + time, {0,0,0})
   end
 
-  def do_benchmark_iter(fun, deadline, {cnt, total_time, total_time_sq} = stat) do
+  defp do_benchmark_iter(fun, deadline, {cnt, total_time, total_time_sq} = stat) do
     if :erlang.monotonic_time(:milli_seconds) > deadline do
       stat
     else
