@@ -1,10 +1,10 @@
 defmodule RedisEtsBenchmark do
 
   @key_bytes 10
-  @run_time 20_000
+  @run_time 60_000
   @key "sample_key"
 
-  @parallel [1, 4, 8, 12, 16, 20, 25, 30]
+  @parallel [5, 10, 15, 20, 25, 30, 45, 40, 45, 50, 55, 60]
 
   @modules [
     RedisEtsBenchmark.RedisClient,
@@ -13,6 +13,7 @@ defmodule RedisEtsBenchmark do
   ]
 
   def benchmark_all do
+    :cpu_sup.start
     Enum.each(@modules, &benchmark_module/1)
   end
 
@@ -35,14 +36,15 @@ defmodule RedisEtsBenchmark do
 
   defp print_header(module) do
     IO.puts("Running benchmark for #{inspect module}")
-    IO.puts("concurrency; total count; op/s; mean(ms); stdev %")
+    IO.puts("concurrency; total count; op/s; mean(ms); stdev %; la")
   end
 
   defp print_result({cnt, mean, stdev}, parallel) do
     mean_s = :io_lib.format("~.3f", [mean])
     stdev_percent = round(100 * stdev / mean)
     rps = round(1000 * cnt / @run_time)
-    IO.puts "#{parallel};#{cnt};#{rps};#{mean_s};#{stdev_percent}"
+    la_s = :io_lib.format("~.3f", [:cpu_sup.avg1 / 256])
+    IO.puts "#{parallel};#{cnt};#{rps};#{mean_s};#{stdev_percent};#{la_s}"
   end
 
 end
