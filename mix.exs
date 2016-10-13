@@ -16,8 +16,7 @@ defmodule RedisEtsBenchmark.Mixfile do
 
   defp deps do
     [
-      {:eredis_sync, git: "https://github.com/funbox/eredis_sync.git", tag: "v0.1.0"},
-      {:benchee, "~> 0.4"}
+      {:eredis_sync, git: "https://github.com/funbox/eredis_sync.git", tag: "v0.1.0"}
     ]
   end
 end
