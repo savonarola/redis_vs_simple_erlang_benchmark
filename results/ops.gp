@@ -3,7 +3,7 @@ set output "ops.png"
 
 set key right bottom
 set xlabel "concurrency"
-set ylabel "op/s"
+set ylabel "ops/s"
 set grid
 
 set datafile separator ";"

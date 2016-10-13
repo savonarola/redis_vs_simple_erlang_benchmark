@@ -3,7 +3,7 @@ set output "latency.png"
 
 set key right bottom
 set xlabel "concurrency"
-set ylabel "ms"
+set ylabel "latency, ms"
 set grid
 
 set datafile separator ";"
