@@ -1,7 +1,7 @@
 defmodule RedisEtsBenchmark do
 
   @key_bytes 10
-  @run_time 60_000
+  @run_time 10_000
   @key "sample_key"
 
   @parallel [5, 10, 15, 20, 25, 30, 40, 50, 60]
@@ -9,12 +9,19 @@ defmodule RedisEtsBenchmark do
   @modules [
     RedisEtsBenchmark.RedisClient,
     RedisEtsBenchmark.KvClient,
-    RedisEtsBenchmark.RedisSyncClient
+    RedisEtsBenchmark.RedisSyncClient,
+    RedisEtsBenchmark.EtsClient
   ]
 
   def benchmark_all do
-    :cpu_sup.start
+    init
     Enum.each(@modules, &benchmark_module/1)
+  end
+
+  defp init do
+    :cpu_sup.start
+    conf = Application.fetch_env!(:redis_ets_benchmark, :ets)
+    :ets.new(conf[:name], [:set, :named_table, :public])
   end
 
   defp benchmark_module(client_module) do
