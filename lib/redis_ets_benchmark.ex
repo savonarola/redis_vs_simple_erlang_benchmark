@@ -1,7 +1,7 @@
 defmodule RedisEtsBenchmark do
 
   @key_bytes 10
-  @run_time 10_000
+  @run_time 60_000
   @key "sample_key"
 
   @parallel [5, 10, 15, 20, 25, 30, 40, 50, 60]
