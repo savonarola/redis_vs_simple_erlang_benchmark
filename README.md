@@ -1,7 +1,17 @@
-# RedisEtsBenchmark
+# Redis vs Simple Erlang benchmark
 
-Very primitive comparison of `Redis` vs `GenServer` + `ets` + distributed Erlang
-as a "net shared in-memory storage".
+This benchmark is a comparison of `Redis` vs the simplest possible atomic `GenServer` storage  
+(singlethreaded, as Redis is) as a "net shared in-memory storage".
+
+Its purpose is to obtain a rude lower bound of productivity wich can be obtained
+using `Erlang` basic primitives for constructing a simple remote storage.
+
+`Erlang` version of storage does not use concurrent benefits of `Erlang` _purposely_
+ to keep both the serializability which `Redis` offers and the simplicity of code.
+
+Generally speaking, we compare productivity of a single CPU core fully utilized with
+`Redis` storing values and with a simple spinning `GenServer` also storing values
+somewhere in memory.
 
 ## Running
 
